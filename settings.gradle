@@ -1,0 +1,6 @@
+rootProject.name = 'simplecrud'
+include 'application'
+include 'domain'
+include 'infrastructure:rest-api-adapter'
+include 'infrastructure:persistance-adapter'
+

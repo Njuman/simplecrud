@@ -1,0 +1,23 @@
+buildscript {
+    repositories { mavenCentral() }
+}
+
+plugins { id "io.spring.dependency-management" version "1.0.5.RELEASE" }
+
+ext { springBootVersion = '2.0.5.RELEASE' }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories { mavenCentral() }
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile project(':domain')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
