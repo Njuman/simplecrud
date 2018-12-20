@@ -7,7 +7,7 @@
 
 ### Intent
 
-This is a simple example of how you would setup a simple Hexagonal Architecture using spring. The power is using this design pattern is that is isolates dependency from your business logic using ports.
+This example of how you would develop a simple Hexagonal Architecture Java application using spring. The power is using this design pattern that is isolated dependency from your business logic using ports.
 
 ### Run
 
