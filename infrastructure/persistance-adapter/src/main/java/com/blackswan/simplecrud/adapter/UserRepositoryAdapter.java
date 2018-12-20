@@ -4,6 +4,7 @@ import com.blackswan.simplecrud.entity.UserEntity;
 import com.blackswan.simplecrud.UserRepository;
 import com.blackswan.simplecrud.model.User;
 import com.blackswan.simplecrud.ports.PersistenceService;
+import com.blackswan.simplecrud.ports.UserPersistenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class UserRepositoryAdapter implements PersistenceService<UserEntity> {
+public class UserRepositoryAdapter implements UserPersistenceService {
 
     private UserRepository userRepository;
 

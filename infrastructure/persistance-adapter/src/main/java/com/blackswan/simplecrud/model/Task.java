@@ -1,9 +1,11 @@
 package com.blackswan.simplecrud.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
 public class Task {
 
     @Id
@@ -18,11 +20,11 @@ public class Task {
 
     private String status;
 
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     public Task() { }
 
-    public Task(Long userId, String name, String description, String status, LocalDateTime dateTime) {
+    public Task(Long userId, String name, String description, String status, String dateTime) {
         this.userId = userId;
         this.name = name;
         this.description = description;
@@ -70,11 +72,11 @@ public class Task {
         this.status = status;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

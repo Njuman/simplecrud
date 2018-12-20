@@ -7,14 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class TaskRestController {
 
     private TaskService<TaskEntity> taskService;
@@ -26,8 +24,8 @@ public class TaskRestController {
 
     @RequestMapping(value = "/api/user/{userId}/task", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity addTask(@PathVariable Long userId, @RequestBody TaskEntity taskEntity) {
-        Long TaskId = taskService.create(taskEntity);
-        if (userId > 0) {
+        Long TaskId = taskService.create(userId, taskEntity);
+        if (TaskId > 0) {
             return new ResponseEntity("{\"id\": " + TaskId + "}", HttpStatus.CREATED);
         }
 
@@ -36,11 +34,11 @@ public class TaskRestController {
 
     @RequestMapping(value = "/api/user/{userId}/task", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TaskEntity> getTasks(@PathVariable Long userId) {
-        return taskService.getAllTasks();
+        return taskService.getAllTasks(userId);
     }
 
     @RequestMapping(value = "/api/user/{userId}/task/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getTask(@PathVariable Long id, @RequestBody TaskEntity taskEntity) {
+    public ResponseEntity getTask(@PathVariable Long id) {
         Optional possibleTask = taskService.getTask(id);
 
         if (possibleTask.isPresent()) {

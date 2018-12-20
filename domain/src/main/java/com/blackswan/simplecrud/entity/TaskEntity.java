@@ -13,11 +13,13 @@ public class TaskEntity {
 
     private String status;
 
-    private LocalDateTime dateTime;
+    private String dateTime;
 
-    public TaskEntity(Long id, Long userId, String name, String description, String status, LocalDateTime dateTime) {
+    public TaskEntity() { }
+
+    public TaskEntity(Long id, Long userId, String name, String description, String status, String dateTime) {
         this.id = id;
-        this.id = userId;
+        this.userId = userId;
         this.name = name;
         this.description = description;
         this.status = status;
@@ -64,11 +66,11 @@ public class TaskEntity {
         this.status = status;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

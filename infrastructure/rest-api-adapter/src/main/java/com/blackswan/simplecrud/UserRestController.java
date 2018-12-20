@@ -62,4 +62,10 @@ public class UserRestController {
 
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
 }

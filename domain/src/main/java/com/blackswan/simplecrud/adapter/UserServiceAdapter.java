@@ -2,7 +2,6 @@ package com.blackswan.simplecrud.adapter;
 
 import com.blackswan.simplecrud.entity.UserEntity;
 import com.blackswan.simplecrud.lib.SimpleErrorHandler;
-import com.blackswan.simplecrud.ports.PersistenceService;
 import com.blackswan.simplecrud.ports.UserPersistenceService;
 import com.blackswan.simplecrud.ports.UserService;
 
@@ -11,7 +10,7 @@ import java.util.Optional;
 
 public class UserServiceAdapter implements UserService<UserEntity> {
 
-    private PersistenceService persistenceService;
+    private UserPersistenceService persistenceService;
 
     public UserServiceAdapter(UserPersistenceService persistenceService) {
         this.persistenceService = persistenceService;
@@ -50,7 +49,7 @@ public class UserServiceAdapter implements UserService<UserEntity> {
     }
 
     @Override
-    public void deleteTask(Long id) {
+    public void deleteUser(Long id) {
         if (id instanceof Long) {
             persistenceService.delete(id);
         }

@@ -10,7 +10,7 @@ public interface PersistenceService<T> {
 
     Boolean update(Long id, T entity);
 
-    Optional get(Long userId);
+    Optional get(Long id);
 
     void delete(Long id);
 }

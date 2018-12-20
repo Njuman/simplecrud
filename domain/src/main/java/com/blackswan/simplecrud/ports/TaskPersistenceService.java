@@ -1,18 +1,9 @@
 package com.blackswan.simplecrud.ports;
 
+import com.blackswan.simplecrud.entity.TaskEntity;
+
 import java.util.List;
-import java.util.Optional;
 
-public interface TaskPersistenceService<T> {
-    Long add(T taskEntity);
-
-    List<T> get();
-
-    Boolean update(Long id, T taskEntity);
-
-    void delete(int id);
-
-    Optional get(Long userId);
-
-    Boolean delete(Long id);
+public interface TaskPersistenceService extends PersistenceService<TaskEntity>{
+    List<TaskEntity> getByUserId(Long id);
 }

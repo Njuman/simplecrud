@@ -1,4 +1,6 @@
 package com.blackswan.simplecrud.ports;
 
-public interface UserPersistenceService extends PersistenceService{
+import com.blackswan.simplecrud.entity.UserEntity;
+
+public interface UserPersistenceService extends PersistenceService<UserEntity> {
 }

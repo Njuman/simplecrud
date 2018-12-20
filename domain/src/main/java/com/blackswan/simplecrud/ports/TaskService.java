@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface TaskService<T>{
 
-    Long create(T taskEntity);
+    Long create(Long id, T taskEntity);
 
-    List<T> getAllTasks();
+    List<T> getAllTasks(Long id);
 
-    Optional getTask(Long userId);
+    Optional getTask(Long id);
 
     Boolean updateTask(Long id, T taskEntity) throws SimpleErrorHandler;
 
