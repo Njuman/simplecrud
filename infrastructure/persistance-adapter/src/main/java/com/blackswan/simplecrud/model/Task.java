@@ -1,8 +1,13 @@
-package com.blackswan.simplecrud.entity;
+package com.blackswan.simplecrud.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-public class TaskEntity {
+public class Task {
+
+    @Id
+    @GeneratedValue
     private Long id;
 
     private Long userId;
@@ -15,9 +20,10 @@ public class TaskEntity {
 
     private LocalDateTime dateTime;
 
-    public TaskEntity(Long id, Long userId, String name, String description, String status, LocalDateTime dateTime) {
-        this.id = id;
-        this.id = userId;
+    public Task() { }
+
+    public Task(Long userId, String name, String description, String status, LocalDateTime dateTime) {
+        this.userId = userId;
         this.name = name;
         this.description = description;
         this.status = status;
@@ -74,7 +80,7 @@ public class TaskEntity {
 
     @Override
     public String toString() {
-        return "TaskEntity{" +
+        return "Task{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", name='" + name + '\'' +

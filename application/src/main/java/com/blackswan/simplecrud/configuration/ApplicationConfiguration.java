@@ -1,14 +1,8 @@
 package com.blackswan.simplecrud.configuration;
 
 import com.blackswan.simplecrud.UserRepository;
-import com.blackswan.simplecrud.adapter.UpdateUserServiceAdapter;
 import com.blackswan.simplecrud.adapter.UserRepositoryAdapter;
-import com.blackswan.simplecrud.ports.AddUserService;
-import com.blackswan.simplecrud.ports.GetUserService;
-import com.blackswan.simplecrud.ports.UpdateUserService;
 import com.blackswan.simplecrud.ports.UserPersistenceService;
-import com.blackswan.simplecrud.adapter.AddUserServiceAdapter;
-import com.blackswan.simplecrud.adapter.GetUserServiceAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

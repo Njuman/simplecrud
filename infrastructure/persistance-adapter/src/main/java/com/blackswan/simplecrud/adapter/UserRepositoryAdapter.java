@@ -3,7 +3,7 @@ package com.blackswan.simplecrud.adapter;
 import com.blackswan.simplecrud.entity.UserEntity;
 import com.blackswan.simplecrud.UserRepository;
 import com.blackswan.simplecrud.model.User;
-import com.blackswan.simplecrud.ports.UserPersistenceService;
+import com.blackswan.simplecrud.ports.PersistenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-public class UserRepositoryAdapter implements UserPersistenceService {
+public class UserRepositoryAdapter implements PersistenceService<UserEntity> {
 
     private UserRepository userRepository;
 
@@ -21,7 +21,7 @@ public class UserRepositoryAdapter implements UserPersistenceService {
     }
 
     @Override
-    public Long addUser(UserEntity userEntity) {
+    public Long add(UserEntity userEntity) {
         User user = new User(
                 userEntity.getUsername(),
                 userEntity.getFirstName(),
@@ -33,7 +33,7 @@ public class UserRepositoryAdapter implements UserPersistenceService {
     }
 
     @Override
-    public List<UserEntity> getUsers() {
+    public List<UserEntity> get() {
        List<UserEntity> users = new ArrayList<>();
 
         userRepository.findAll().forEach(user -> {
@@ -49,7 +49,7 @@ public class UserRepositoryAdapter implements UserPersistenceService {
     }
 
     @Override
-    public Boolean updateUser(Long id, UserEntity userEntity) {
+    public Boolean update(Long id, UserEntity userEntity) {
         Optional<User> user = userRepository.findById(id);
 
         if (user.isPresent()) {
@@ -77,12 +77,12 @@ public class UserRepositoryAdapter implements UserPersistenceService {
     }
 
     @Override
-    public void deleteUser(int id) {
-
+    public Optional get(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
-    public Optional getUser(Long id) {
-        return userRepository.findById(id);
+    public void delete(Long id) {
+        userRepository.delete(userRepository.findById(id).get());
     }
 }

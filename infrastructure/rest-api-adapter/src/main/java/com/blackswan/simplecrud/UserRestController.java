@@ -2,9 +2,7 @@ package com.blackswan.simplecrud;
 
 import com.blackswan.simplecrud.entity.UserEntity;
 import com.blackswan.simplecrud.lib.SimpleErrorHandler;
-import com.blackswan.simplecrud.ports.AddUserService;
-import com.blackswan.simplecrud.ports.GetUserService;
-import com.blackswan.simplecrud.ports.UpdateUserService;
+import com.blackswan.simplecrud.ports.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,31 +15,21 @@ import java.util.Optional;
 @RestController
 public class UserRestController {
 
-    private GetUserService getUserService;
-
-    private AddUserService addUserService;
-
-    private UpdateUserService updateUserService;
+    private UserService<UserEntity> userService;
 
     @Autowired
-    public UserRestController(
-            GetUserService getUserService,
-            AddUserService addUserService,
-            UpdateUserService updateUserService
-    ) {
-        this.getUserService = getUserService;
-        this.addUserService = addUserService;
-        this.updateUserService = updateUserService;
+    public UserRestController(UserService<UserEntity> userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/api/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserEntity> getUsers() {
-        return getUserService.getAllUsers();
+        return userService.getAllUsers();
     }
 
     @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getUser(@PathVariable Long id) {
-        Optional possibleUser = getUserService.getUser(id);
+        Optional possibleUser = userService.getUser(id);
 
         if (possibleUser.isPresent()) {
             return new ResponseEntity(possibleUser.get(), HttpStatus.OK);
@@ -52,7 +40,7 @@ public class UserRestController {
 
     @RequestMapping(value = "/api/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity addUser(@RequestBody UserEntity user) {
-        Long userId = addUserService.addUser(user);
+        Long userId = userService.addUser(user);
         if (userId > 0) {
             return new ResponseEntity("{\"id\": " + userId + "}", HttpStatus.CREATED);
         }
@@ -63,7 +51,7 @@ public class UserRestController {
     @RequestMapping(value = "/api/user/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateUser(@PathVariable Long id, @RequestBody UserEntity user) {
         try {
-            Boolean response = updateUserService.updateUser(id, user);
+            Boolean response = userService.updateUser(id, user);
 
             if (response) {
                 return new ResponseEntity("{\"message\": \"Successfully Updated\" }", HttpStatus.ACCEPTED);
