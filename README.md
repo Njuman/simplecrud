@@ -17,7 +17,7 @@ Download the git repo
 Run Gradle on root directory or project.
 `gradle bootRun`
 
-### Possible Improvement
+### Possible Improvements
 
 - Better error handling would be a massive advantage as the controllers are expecting a happy case scenario.
 - Using Request, Event, and Command handler on the adapter folder or naming adapter as handlers
