@@ -22,4 +22,5 @@ Run Gradle on root directory or project.
 - Better error handling would be a massive advantage as currently the system would work in happy case scenario.
 - Using Request, Event, and Command handler in the domain layer instead of adapters.
 - Creating a persistence manager adapter to manage ORMs or Database integration (Using more Generics to make the adapter customizable) making the combinations more customizable without having to develop two repository adapter strategies.
+- Making the `UserEntity` responsible for creating managing of the task through the `TaskEnitity` . Instead of creating an adapter to handle that creation.
 
