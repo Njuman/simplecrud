@@ -24,3 +24,10 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+
+### Build Files ###
+/application/build
+/domain/build
+/persistence-adapter/build
+/rest-api-adapter/build
