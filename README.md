@@ -19,7 +19,7 @@ Run Gradle on root directory or project.
 
 ### Possible Improvements
 
-- Better error handling would be a massive advantage as the controllers are expecting a happy case scenario.
-- Using Request, Event, and Command handler on the adapter folder or naming adapter as handlers
+- Better error handling would be a massive advantage as currently the system would work in happy case scenario.
+- Using Request, Event, and Command handler in the domain layer instead of adapters.
 - Creating a persistence manager adapter to manage ORMs or Database integration (Using more Generics to make the adapter customizable) making the combinations more customizable without having to develop two repository adapter strategies.
 
